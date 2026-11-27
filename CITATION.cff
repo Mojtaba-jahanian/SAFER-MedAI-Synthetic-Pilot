@@ -5,6 +5,8 @@ message: >-
 title: "SAFER-MedAI: Frozen Synthetic Typed-Evidence Pilot (Stage 02C-1)"
 type: software
 version: 1.0.0
+license: MIT
+repository-code: "https://github.com/Mojtaba-jahanian/SAFER-MedAI-Synthetic-Pilot"
 authors:
   - family-names: Jahanian
     given-names: Mojtaba

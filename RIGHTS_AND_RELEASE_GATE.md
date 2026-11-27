@@ -1,11 +1,26 @@
-# Release gate — approval required before public release
+# Rights, license, and scientific release boundaries — Stage 02C-1
 
-**Prepared, not published.** GitHub public visibility, tag/release publication and Zenodo archiving are external publication actions. Confirm ALL before making the repository public:
+## Authorization recorded
 
-1. Authorized rights holder(s) approve publishing this *original* simulation source, tests, protocol, synthetic data and traces under the selected reuse license. Approval of article authorship/CRediT by itself does not grant a software license.
-2. Recommended **MIT license for original software**. Synthetic-record permissions may be declared separately (e.g., CC0-1.0 or CC-BY-4.0) if all rights holders approve; avoid a misleading catch-all license. Put the actual `LICENSE` and Zenodo metadata in the repository only after explicit license choice.
-3. Do not upload the old reference PDF/medical thumbnails, NIH/MIT-BIH records, original ECG outputs, third-party Active RCPS source, or unpublished peer-review material.
-4. Run `python verify_archived_evidence.py` and `python recompute_recorded_primary.py` on the staged repository. Check for credentials/identifiers and review all files listed by `git status` before the first push.
-5. Check seven-author **scholarly** attribution vs **software authorship** with the primary corresponding author; do not automatically list all paper contributors as code maintainers without consent.
-6. Confirm the repository's code/Data Availability description faithfully states missing pieces of full medical pipeline reproducibility.
-7. Create and publish release `v1.0.0` only after linking the GitHub repository to Zenodo; wait for Zenodo to expose the version DOI and concept DOI. Never invent either.
+On 27 November 2026, Mojtaba Jahanian, primary corresponding and senior author of the related manuscript, explicitly confirmed authority to release the **original Stage 02C-1 implementation** and the **fully synthetic accompanying pilot records** publicly under the MIT License. The `LICENSE` file records the chosen terms.
+
+This approval does **not** grant rights in third-party source code, external data, biomedical images, clinical labels, patient records, or other research projects. Such materials are excluded from this repository. Manuscript coauthorship/CRediT does not automatically determine software authorship; `CITATION.cff` separately describes the software citation.
+
+## Scientific boundary
+
+- This release covers the frozen Stage 02C-1 **synthetic** pilot only.
+- Preserve the recorded negative primary effect (P4 versus repair-first P5: **-0.50** averaged over W3/W4).
+- Do **not** claim clinical risk certification, task-matched superiority against Active RCPS, or external hospital validation.
+- The planned 1,000 confirmatory seeds were **not** run after the pilot failed its GO criterion.
+- No NIH ChestXray14 images/identifiers, MIT-BIH patient records, historical ECG output files or third-party Active RCPS source are included.
+- Existing code and pilot traces remain byte-identical to their frozen archives; this licensing change modifies **metadata and documentation only**.
+
+## Publication and DOI order
+
+1. Push the MIT License and amended metadata, verifying the frozen scientific hashes.
+2. Make the GitHub repository Public once its sensitive-content review is complete.
+3. **Connect and enable the repository in Zenodo before publishing** a GitHub Release.
+4. Publish GitHub Release `v1.0.0` from the approved commit.
+5. Confirm Zenodo has archived that release; use the actual issued version DOI in the software citation and manuscript. Do not invent a DOI.
+
+A MIT license allows redistribution under its conditions. Attribution, warranty limits and license terms are defined in `LICENSE`.

@@ -6,7 +6,7 @@ This repository accompanies the research manuscript entitled:
 
 > **When Medical AI Risk Cannot Be Certified: Support-Aware Statistical Risk Assessment and Cost-Aware Evidence Acquisition under Patient and Hospital Shift**
 
-**Repository scope:** Synthetic Stage 02C-1 experiments only. This repository is **not** a clinically deployed AI system, a medical risk certificate, or a complete reproduction of the paper's retrospective NIH ChestXray14 and ECG analyses. The paper is not represented here as formally published. No manuscript DOI, software DOI, or repository license has yet been issued or authorized.
+**Repository scope:** Synthetic Stage 02C-1 experiments only. This repository is **not** a clinically deployed AI system, a medical risk certificate, or a complete reproduction of the paper's retrospective NIH ChestXray14 and ECG analyses. The paper is not represented here as formally published. The original implementation and fully synthetic pilot artifacts in this repository are shared under the MIT License (see [`LICENSE`](LICENSE)); any manuscript DOI or archived software DOI will be cited only after issuance.
 
 ## Manuscript authors and affiliations
 
@@ -100,7 +100,7 @@ These commands validate/reanalyze stored synthetic evidence. They are not a repr
 
 This repository deliberately excludes NIH ChestXray14 images, patient-indexed score tables, MIT–BIH records, historical ECG outputs, full manuscripts/medical figures and third-party Active RCPS source code. The study's retrospective imaging and ECG components have separate evidence limitations; this software release alone cannot reproduce their original fitted models or full inference environments.
 
-The archive is **prepared for review**, not yet publicly released. Before changing visibility from **Private** to **Public**, confirm software and synthetic-data rights and select an explicit license. Read [`RIGHTS_AND_RELEASE_GATE.md`](RIGHTS_AND_RELEASE_GATE.md). In particular, manuscript coauthorship does not automatically establish software rights or permission to license all components under MIT.
+**Release authorization:** On 27 November 2026, the primary corresponding author, acting with declared authority to authorize distribution of the original research implementation, approved MIT licensing and public availability of the **original code and fully synthetic pilot artifacts** in this repository. See [`LICENSE`](LICENSE) and [`RIGHTS_AND_RELEASE_GATE.md`](RIGHTS_AND_RELEASE_GATE.md). Third-party code, external medical datasets, patient records and manuscript graphics are excluded. Visibility and DOI status should be verified on GitHub/Zenodo rather than inferred from this statement.
 
 ## Citation and DOI
 
@@ -108,7 +108,7 @@ The associated **research manuscript** has the seven authors listed above in the
 
 For **this code archive**, see [`CITATION.cff`](CITATION.cff): its current software-specific citation credits Mojtaba Jahanian as the listed software author, and is **not** intended to replace the manuscript's full author list. Software authorship/licensing can be revised if the rights and contribution record warrants it.
 
-Target repository: `SAFER-MedAI-Synthetic-Pilot` · Proposed release: `v1.0.0`. **No Zenodo DOI exists yet.** After a GitHub Release is actually archived in Zenodo, record its **version DOI** and (when applicable) its **concept DOI** here and in the manuscript's Code Availability statement. Do not cite a placeholder DOI.
+Repository: [`SAFER-MedAI-Synthetic-Pilot`](https://github.com/Mojtaba-jahanian/SAFER-MedAI-Synthetic-Pilot) · Planned archival release: `v1.0.0`. **No Zenodo DOI has been recorded yet.** After a GitHub Release is actually archived in Zenodo, record its **version DOI** and (when applicable) its **concept DOI** here and in the manuscript's Code Availability statement. Do not cite a placeholder DOI.
 
 ## Contact
 
