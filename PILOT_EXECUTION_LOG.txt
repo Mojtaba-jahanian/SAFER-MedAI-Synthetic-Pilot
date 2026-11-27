@@ -1,0 +1,22 @@
+02C1 START: 100 seeds / 7000 episodes; workers=4
+PROGRESS 5/100 independent seeds; elapsed=2.5s
+PROGRESS 10/100 independent seeds; elapsed=3.7s
+PROGRESS 15/100 independent seeds; elapsed=5.1s
+PROGRESS 20/100 independent seeds; elapsed=6.4s
+PROGRESS 25/100 independent seeds; elapsed=8.2s
+PROGRESS 30/100 independent seeds; elapsed=9.6s
+PROGRESS 35/100 independent seeds; elapsed=11.1s
+PROGRESS 40/100 independent seeds; elapsed=12.4s
+PROGRESS 45/100 independent seeds; elapsed=13.9s
+PROGRESS 50/100 independent seeds; elapsed=15.4s
+PROGRESS 55/100 independent seeds; elapsed=17.2s
+PROGRESS 60/100 independent seeds; elapsed=17.9s
+PROGRESS 65/100 independent seeds; elapsed=18.9s
+PROGRESS 70/100 independent seeds; elapsed=20.3s
+PROGRESS 75/100 independent seeds; elapsed=21.3s
+PROGRESS 80/100 independent seeds; elapsed=22.5s
+PROGRESS 85/100 independent seeds; elapsed=23.6s
+PROGRESS 90/100 independent seeds; elapsed=24.3s
+PROGRESS 95/100 independent seeds; elapsed=25.4s
+PROGRESS 100/100 independent seeds; elapsed=26.3s
+PILOT_COMPLETE {"elapsed_sec": 26.57, "decision": "REPOSITION_NEGATIVE_OR_INCONCLUSIVE_PILOT", "effect": -0.5, "pilot_ci": [-0.5, -0.5], "episodes": 7000, "invalid_certify": 0}

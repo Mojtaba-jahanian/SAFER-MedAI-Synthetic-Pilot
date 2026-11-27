@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: >-
+  If you use the Stage 02C-1 synthetic implementation or its frozen negative
+  pilot results, cite this version of the software archive.
+title: "SAFER-MedAI: Frozen Synthetic Typed-Evidence Pilot (Stage 02C-1)"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Jahanian
+    given-names: Mojtaba
+    email: mojtaba160672000@aut.ac.ir
+keywords:
+  - risk auditing
+  - synthetic simulation
+  - evidence acquisition
+  - negative results
+  - reproducibility
+abstract: >-
+  Python standard-library implementation and frozen records for a prospective
+  synthetic five-world test of evidence-compatible risk auditing and typed
+  evidence acquisition, including a negative primary result against a repair-first
+  Neyman baseline. Not a clinical risk certification system.
+# DOI intentionally omitted until Zenodo registers the actual GitHub release.
+# Other paper authors are acknowledged in the manuscript; software-specific
+# attribution requires rights-holder verification before the public release.

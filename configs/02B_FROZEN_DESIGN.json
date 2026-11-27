@@ -1,0 +1,310 @@
+{
+  "id": "SAFER-J4-02B-SYNTHETIC-CRN-v1.0",
+  "created": "2026-11-26",
+  "status": "DESIGN_FROZEN_IMPLEMENTATION_GATE_PENDING",
+  "source_note": "New prospective synthetic experimental design, NOT a rerun of historical T15/T17 or independent clinical validation",
+  "primary_question": "Does a typed cost-aware SAFER decision policy improve budget-constrained evidence-compatible risk resolution versus a strong typed-action-enabled comparator at identical synthetic information and costs?",
+  "endpoint": "Target-patient population mean binary loss of a frozen synthetic predictor (clinical-reference estimand simulated, not observed clinical adjudication)",
+  "alpha_primary": 0.3,
+  "delta_total": 0.05,
+  "delta_allocation": {
+    "target_mass": 0.015,
+    "conditional_loss": 0.025,
+    "reference_discrepancy": 0.01
+  },
+  "mixture_estimation": {
+    "independent_target_covariate_draws_per_episode": 10000,
+    "method": "simultaneous Hoeffding box plus simplex; never use latent true mixture inside any policy"
+  },
+  "loss_inference": {
+    "method": "predeclared time-uniform Hoeffding strata, bounded patient-level Bernoulli losses",
+    "formula": "sqrt(log(2*K*n*(n+1)/delta_r)/(2*n))",
+    "k_rule": "K equals the number of eligible prespecified conditional streams; allocate union bound across all possible streams before runs"
+  },
+  "action_types": {
+    "A1": {
+      "description": "One next independently sampled patient loss from an eligible prespecified stratum stream",
+      "cost_units_per_patient": 1,
+      "batch_size": 20
+    },
+    "A2": {
+      "description": "Once-per-stratum independent target-reference discrepancy audit, consisting of 120 paired weak/reference observations; derive one-shot upper discrepancy bound using delta_c and multiplicity correction; no assumed successful repair",
+      "cost_units": 120,
+      "max_per_stratum": 1,
+      "paired_reference_n": 120
+    },
+    "A3": {
+      "description": "Once-per-unsupported-stratum access to an independent target-site source with verified direct-target patient sampling and clinical reference, opening a valid A1 stream; A3 grants access only, not a free risk certificate",
+      "cost_units": 350,
+      "max_per_stratum": 1
+    }
+  },
+  "synthetic_budget_units": [
+    800,
+    2600
+  ],
+  "budget_includes": "A1, A2, A3 and shared warm-start labels; common unlabeled target pilot excluded and separately reported",
+  "warm_start_labels_per_supported_stratum": 20,
+  "randomization": {
+    "pilot_seeds": {
+      "start": 600000,
+      "count": 100
+    },
+    "confirmatory_seeds": {
+      "start": 700000,
+      "count": 1000
+    },
+    "method": "common-random-number patient streams per world/seed; independent target mixture sample; independent A2 reference pairs",
+    "confirmation_locked_and_unopened": true
+  },
+  "worlds": [
+    {
+      "id": "W1_supported_low",
+      "kind": "supported",
+      "source_masses": [
+        0.65,
+        0.35
+      ],
+      "target_masses": [
+        0.65,
+        0.35
+      ],
+      "weak_loss_probabilities": [
+        0.08,
+        0.17
+      ],
+      "reference_mismatch_probabilities": [
+        0.0,
+        0.0
+      ],
+      "unsupported_strata": [],
+      "initial_reference_blocked_strata": [],
+      "expected_truth_category": "below_alpha"
+    },
+    {
+      "id": "W2_composition_shift",
+      "kind": "shift",
+      "source_masses": [
+        0.75,
+        0.25
+      ],
+      "target_masses": [
+        0.15,
+        0.85
+      ],
+      "weak_loss_probabilities": [
+        0.08,
+        0.25
+      ],
+      "reference_mismatch_probabilities": [
+        0.0,
+        0.0
+      ],
+      "unsupported_strata": [],
+      "initial_reference_blocked_strata": [],
+      "expected_truth_category": "below_alpha"
+    },
+    {
+      "id": "W3_reference_gap",
+      "kind": "reference_gap",
+      "source_masses": [
+        0.55,
+        0.45
+      ],
+      "target_masses": [
+        0.55,
+        0.45
+      ],
+      "weak_loss_probabilities": [
+        0.08,
+        0.12
+      ],
+      "reference_mismatch_probabilities": [
+        0.0,
+        0.03
+      ],
+      "unsupported_strata": [],
+      "initial_reference_blocked_strata": [
+        1
+      ],
+      "expected_truth_category": "below_alpha"
+    },
+    {
+      "id": "W4_support_gap",
+      "kind": "support_gap",
+      "source_masses": [
+        0.58,
+        0.42,
+        0.0
+      ],
+      "target_masses": [
+        0.35,
+        0.25,
+        0.4
+      ],
+      "weak_loss_probabilities": [
+        0.06,
+        0.13,
+        0.17
+      ],
+      "reference_mismatch_probabilities": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "unsupported_strata": [
+        2
+      ],
+      "initial_reference_blocked_strata": [],
+      "expected_truth_category": "below_alpha"
+    },
+    {
+      "id": "W5_supported_high_risk",
+      "kind": "high_risk",
+      "source_masses": [
+        0.5,
+        0.5
+      ],
+      "target_masses": [
+        0.5,
+        0.5
+      ],
+      "weak_loss_probabilities": [
+        0.43,
+        0.51
+      ],
+      "reference_mismatch_probabilities": [
+        0.0,
+        0.0
+      ],
+      "unsupported_strata": [],
+      "initial_reference_blocked_strata": [],
+      "expected_truth_category": "above_alpha"
+    }
+  ],
+  "policy_ids": [
+    "P0_uniform_A1_with_shared_guard",
+    "P1_proportional_A1_with_shared_guard",
+    "P2_plugin_Neyman_A1_with_shared_guard",
+    "P3_greedy_width_A1_with_shared_guard",
+    "P4_SAFER_typed_cost_aware_new_implementation",
+    "P5_repair_first_Neyman_typed_strong_baseline",
+    "P6_SAFER_no_typed_repair_ablation"
+  ],
+  "information_fairness": {
+    "all_policies_share": [
+      "prespecified g",
+      "observed target-stratum counts",
+      "eligible action menu and prices",
+      "same warm start",
+      "same loss and reference potential-outcome streams",
+      "same alpha/delta"
+    ],
+    "no_policy_access_to": [
+      "generating latent target mixture",
+      "generating latent per-stratum risks",
+      "unrevealed labels",
+      "simulated future A2 outcomes",
+      "clinical NIH Test or post-hoc outcomes"
+    ],
+    "primary_comparator": "P5_repair_first_Neyman_typed_strong_baseline",
+    "secondary_comparators": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "condition": "P0-P3 use the same evidence-compatibility/structural gates but allocation-only contrasts are primary only on W1/W2/W5; they cannot be used as the sole benchmark for typed-repair superiority on W3/W4"
+  },
+  "policy_specification_requirements": {
+    "P4": "Manuscript Algorithm 2/Eq.(16) with deterministic NON-ORACLE surrogate: for each legal A1 batch, assume its 20 unseen Bernoulli losses have Beta(1,1)-smoothed current stratum mean (or 0.5 if no data), update only n and plug-in mean, recompute frozen Hoeffding bound and robust U; utility=max(0,U_now-U_pred)/20. For A2, use a world-independent Beta(1,1) mismatch prior and a prespecified one-shot Hoeffding upper discrepancy proxy for n_ref=120 and delta_c/multiplicity; no future label or world risk access. For A3, plan using a two-step A3-plus-next-20-valid-A1 lookahead with Beta(1,1) prior mean 0.5 for a newly accessible stratum; divide positive predicted change by 370. If A1-only structural floor exceeds alpha, only repair actions that could remove a blocked reason are legally eligible; if none affordable, report STRUCTURAL BLOCK. A1 actions remain possible under ordinary UNRESOLVED state. Prediction is planning-only; actual inference uses observed data and valid intervals. Tie-break A1, then A2, then A3; lowest stratum index.",
+    "P5": "Repair-first comparator using exactly same validity tests, A2/A3 access, budgets and prices: when any structurally blocked stratum exists, choose affordable A2 first for the lowest-index reference-blocked stratum, otherwise A3 for lowest-index unsupported stratum; do not spend A1 while B_A1>alpha. After repairs, allocate A1 batches with smoothed plug-in Neyman based on w_hat * sqrt(max(p_hat*(1-p_hat),0.01)); ties lowest stratum. If repairs unaffordable, STRUCTURAL BLOCK; no hidden oracle weights or outcomes.",
+    "tie_break": "A1 then A2 then A3; within type lowest stratum index; same rule all replicates",
+    "neyman_initial_variance": "Beta(1,1) posterior mean and Bernoulli variance; variance floor 0.01 before sqrt",
+    "cost_evaluation": "A2/A3 are synthetic prices only, compare total cost, not clinical currency"
+  },
+  "primary_comparison": {
+    "worlds": [
+      "W3_reference_gap",
+      "W4_support_gap"
+    ],
+    "budget": 2600,
+    "candidate": "P4_SAFER_typed_cost_aware_new_implementation",
+    "baseline": "P5_repair_first_Neyman_typed_strong_baseline",
+    "binary_endpoint": "Valid correct resolution (CERTIFY when true risk <= alpha; HIGH_RISK when true risk > alpha), provided every required compatibility gate was valid at decision time",
+    "effect": "paired difference in resolution rate (candidate minus baseline) averaged equally across W3 and W4",
+    "pilot_min_effect": 0.05
+  },
+  "safety_outcomes": [
+    "invalid_CERTIFY_count",
+    "false_CERTIFY_against_known_synthetic_truth_count",
+    "anytime_interval_coverage_at_prespecified_checkpoints",
+    "reference_gate_breach_count",
+    "support_gate_breach_count",
+    "unique_patients_per_stratum_trace_integrity"
+  ],
+  "secondary_outcomes": [
+    "A1_label_count",
+    "total_synthetic_cost_units",
+    "resolved_fraction",
+    "unresolved_fraction",
+    "structural_block_fraction",
+    "A2_count",
+    "A3_count",
+    "mean_cost_among_valid_correctly_resolved",
+    "per_world_and_budget_paired_differences"
+  ],
+  "statistical_analysis": {
+    "unit": "independent simulated world-seed episode",
+    "paired": "identical seed/world/budget between policies",
+    "pilot_ci": "percentile bootstrap 2000 draws of paired episode-level differences with independent resampling of seeds within world",
+    "confirmatory_ci": "paired bootstrap 5000 draws using fixed seeds; no seed selection",
+    "multiplicity": "one registered primary contrast; all other comparisons descriptive and labeled secondary",
+    "report": "all seeds, negative results, uncertainty and counts; zero events not interpreted as uniform proof"
+  },
+  "pilot_decisions": {
+    "GO_to_confirmation": "No gate breach or invalid CERTIFY; exact code/spec conformance PASS; primary paired improvement >= 0.05 and bootstrap pilot lower 90% CI > 0 at budget 2600; CPU time within cap.",
+    "REPOSITION_without_confirmation": "No defensible 5 pp advantage or improvement not robust, or newly defined policy cannot be differentiated from baselines; report full negative pilot and pivot to assumption-aware auditing.",
+    "STOP_and_debug": "Any structurally invalid CERTIFY, holdout leakage, non-representative stream, policy oracle leakage, duplicated patient units, code/spec mismatch or broken reproducibility; at most one documented correction cycle before re-freezing as a new version."
+  },
+  "compute": {
+    "cpu_only": true,
+    "gpu_hours": 0,
+    "pilot_cpu_wallclock_cap_hours": 4,
+    "schema_smoke_cap_minutes": 30,
+    "pilot_replicates_per_world": 100,
+    "confirmation_replicates_per_world": 1000,
+    "no_model_training": true
+  },
+  "data_policy": {
+    "nih_historical_test": "PROHIBITED_FOR_SELECTION_TUNING_OR_FRESH_CONFIRMATION",
+    "nih_dev_if_recovered": "CAN_BE_USED_ONLY_WITH_PATIENT_LEVEL_LINEAGE_AND_PERMISSIONS; NOT REQUIRED_FOR_SYNTHETIC_PILOT",
+    "e4b": "PREVIOUSLY_CONFIRMED_DESCRIPTIVE_COMPARATOR_ONLY; NOT_A_MATCHED_SAFER_BASELINE"
+  },
+  "publication_gate": "Synthetic-only results, even if positive, cannot be described as external hospital validation, clinical certification, proof of deployment safety, or real adjudication cost saving",
+  "implementation_gate": "02C may not execute any experimental seed until P4/P5 faithful versioned implementations and source-stream/reference/support assumptions pass preflight and unit tests. Code missing at time of 02B design freeze.",
+  "reference_discrepancy_rule": {
+    "applied_after_A2": "upper_e=min(1, observed_reference_disagreement_fraction + sqrt(log(2*d/delta_c)/(2*120))) where d is total number of prespecified strata in the world and A2 occurs no more than once in each",
+    "clinical_risk_upper": "weak_loss_ub + tau_k + upper_e, clipped to 1",
+    "reference_sampling": "independent target-patient paired weak and reference outcomes, with no outcome-based selection"
+  },
+  "conditional_loss_rule": {
+    "eligible_K": "total prespecified strata, including stratum currently unsupported, fixed before trials",
+    "tau_k": "zero ONLY for source/target conditionals equal by synthetic generator assumption OR direct-target A3 stream",
+    "n0": "initial 20 representative patient labels from each initially supported source stratum; charged to total cost",
+    "adaptive_sampling": "separate independent stratum patient sequences and outcome-blind within-stratum acquisition"
+  },
+  "analysis_checkpoints": {
+    "checkpoint_costs": [
+      800,
+      2600
+    ],
+    "stop_on_valid_decision": true,
+    "invalid_outcome_categories": [
+      "invalid_CERTIFY",
+      "false_CERTIFY",
+      "invalid_HIGH_RISK"
+    ],
+    "truth_usage": "post-episode scoring only"
+  }
+}

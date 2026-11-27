@@ -1,0 +1,55 @@
+{
+  "stage": "02C-1_PROSPECTIVE_SYNTHETIC_PILOT",
+  "design_id": "SAFER-J4-02B-SYNTHETIC-CRN-v1.0",
+  "episodes": 7000,
+  "independent_pilot_seeds": 100,
+  "primary": {
+    "worlds": [
+      "W3_reference_gap",
+      "W4_support_gap"
+    ],
+    "budget": 2600,
+    "candidate": "P4",
+    "baseline": "P5",
+    "effect_P4_minus_P5": -0.5,
+    "pilot_90pct_two_sided_bootstrap_CI": [
+      -0.5,
+      -0.5
+    ],
+    "bootstrap_draws": 2000,
+    "bootstrap_resample": "independent seeds within each primary world",
+    "per_world": [
+      {
+        "world": "W3_reference_gap",
+        "N": 100,
+        "mean_difference": 0.0,
+        "P4_resolved": 100,
+        "P5_resolved": 100
+      },
+      {
+        "world": "W4_support_gap",
+        "N": 100,
+        "mean_difference": -1.0,
+        "P4_resolved": 0,
+        "P5_resolved": 100
+      }
+    ],
+    "go_threshold_effect": 0.05
+  },
+  "safety": {
+    "structurally_invalid_certify_count": 0,
+    "false_certify_vs_synthetic_truth_count": 0,
+    "invalid_high_risk_vs_synthetic_truth_count": 0,
+    "patient_uniqueness_violations": 0,
+    "budget_violations": 0,
+    "overall_final_interval_truth_coverage_descriptive": 1.0
+  },
+  "decision": "REPOSITION_NEGATIVE_OR_INCONCLUSIVE_PILOT",
+  "limits": "Synthetic, newly coded prospective policy, not independent hospital validation or clinical adjudication; positive pilot alone is not confirmatory evidence.",
+  "manuscript_updated": false,
+  "confirmatory_seeds_touched": false,
+  "code_sha256": "20957e8f5feeaf28ab24f69fc5f5ba7fca6096ceb9bb904df67c51a3a1a88d5e",
+  "config_sha256": "32ad90dddad3370c56b7d923167c2f98c9b81251c92e79dbac3f6419f561c25b",
+  "runner_sha256": "42082a5af8dd95c6bf49e56b72827ced00c05732c20de39b3ddefb442141a783",
+  "analysis_date_utc": "2026-11-26T17:48:38Z"
+}
