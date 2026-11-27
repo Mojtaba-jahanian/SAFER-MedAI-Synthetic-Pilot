@@ -6,7 +6,7 @@ This repository accompanies the research manuscript entitled:
 
 > **When Medical AI Risk Cannot Be Certified: Support-Aware Statistical Risk Assessment and Cost-Aware Evidence Acquisition under Patient and Hospital Shift**
 
-**Repository scope:** Synthetic Stage 02C-1 experiments only. This repository is **not** a clinically deployed AI system, a medical risk certificate, or a complete reproduction of the paper's retrospective NIH ChestXray14 and ECG analyses. The paper is not represented here as formally published. The original implementation and fully synthetic pilot artifacts in this repository are shared under the MIT License (see [`LICENSE`](LICENSE)); any manuscript DOI or archived software DOI will be cited only after issuance.
+**Repository scope:** Synthetic Stage 02C-1 experiments only. This repository is **not** a clinically deployed AI system, a medical risk certificate, or a complete reproduction of the paper's retrospective NIH ChestXray14 and ECG analyses. The paper is not represented here as formally published. The original implementation and fully synthetic pilot artifacts in this repository are shared under the MIT License (see [`LICENSE`](LICENSE)); the version-specific Zenodo archive DOI is provided below. No journal-publication DOI is claimed.
 
 ## Manuscript authors and affiliations
 
@@ -108,7 +108,7 @@ The associated **research manuscript** has the seven authors listed above in the
 
 For **this code archive**, see [`CITATION.cff`](CITATION.cff): its current software-specific citation credits Mojtaba Jahanian as the listed software author, and is **not** intended to replace the manuscript's full author list. Software authorship/licensing can be revised if the rights and contribution record warrants it.
 
-Repository: [`SAFER-MedAI-Synthetic-Pilot`](https://github.com/Mojtaba-jahanian/SAFER-MedAI-Synthetic-Pilot) · Planned archival release: `v1.0.0`. **No Zenodo DOI has been recorded yet.** After a GitHub Release is actually archived in Zenodo, record its **version DOI** and (when applicable) its **concept DOI** here and in the manuscript's Code Availability statement. Do not cite a placeholder DOI.
+Repository: [`SAFER-MedAI-Synthetic-Pilot`](https://github.com/Mojtaba-jahanian/SAFER-MedAI-Synthetic-Pilot) · **Archived release:** [`v1.0.0`](https://github.com/Mojtaba-jahanian/SAFER-MedAI-Synthetic-Pilot/releases/tag/v1.0.0) · **Version-specific DOI:** [`10.5281/zenodo.24582797`](https://doi.org/10.5281/zenodo.24582797). This DOI identifies the archived synthetic Stage 02C-1 code-and-results snapshot, **not** the unpublished manuscript or the retrospective clinical datasets. The concept DOI, if separately required, should be copied from the authoritative Zenodo record rather than inferred.
 
 ## Contact
 

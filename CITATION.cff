@@ -5,6 +5,8 @@ message: >-
 title: "SAFER-MedAI: Frozen Synthetic Typed-Evidence Pilot (Stage 02C-1)"
 type: software
 version: 1.0.0
+doi: 10.5281/zenodo.24582797
+date-released: 2026-11-27
 license: MIT
 repository-code: "https://github.com/Mojtaba-jahanian/SAFER-MedAI-Synthetic-Pilot"
 authors:
@@ -22,6 +24,6 @@ abstract: >-
   synthetic five-world test of evidence-compatible risk auditing and typed
   evidence acquisition, including a negative primary result against a repair-first
   Neyman baseline. Not a clinical risk certification system.
-# DOI intentionally omitted until Zenodo registers the actual GitHub release.
+# Version-specific DOI for the actual GitHub v1.0.0 release archived on Zenodo.
 # Other paper authors are acknowledged in the manuscript; software-specific
 # attribution requires rights-holder verification before the public release.
